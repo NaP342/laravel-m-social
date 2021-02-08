@@ -40,6 +40,14 @@ class BookCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name');
+        $this->crud->addColumn([
+            'label'     => 'Authors',
+            'type'      => 'select_multiple',
+            'name'      => 'authors',
+            'entity'    => 'authors',
+            'attribute' => 'name',
+            'model'     => 'App\Models\Author',
+        ]);
         CRUD::column('price');
 
         /**
