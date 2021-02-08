@@ -17,6 +17,7 @@ class BookCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\BulkDeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
@@ -48,6 +49,12 @@ class BookCrudController extends CrudController
             'attribute' => 'name',
             'model'     => 'App\Models\Author',
         ]);
+        $this->crud->addColumn([
+            'label'  => 'Price',
+            'type'   => 'number',
+            'name'   => 'price',
+            'suffix' => ".00",
+        ]);
         CRUD::column('price');
 
         /**
@@ -76,7 +83,7 @@ class BookCrudController extends CrudController
             'attribute' => 'name',
             'pivot' => true,
         ]);
-        CRUD::field('price');
+        CRUD::field('price')->type('number');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
